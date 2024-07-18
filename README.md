@@ -1,30 +1,56 @@
-# React + TypeScript + Vite
+# Design system sample
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Used stack:
+React,Storybook,TypeScript,Vite
 
-Currently, two official plugins are available:
+This design system sample demonstrates what a design system could look like(according to author's opinion of course :smile:)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Main ideas:
 
-## Expanding the ESLint configuration
+-Maximize reusability. Сomponents containing grids containing icons... all reusable!
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+-Components should be very flexible. They should support any types of external customization. All classes and almost all styles (besides some crucial basics) should be replaceable
 
-- Configure the top-level `parserOptions` property like this:
+-Grids for every most used cases. We don't write same css hundreds of times.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# Architecture Guide
+
+Below you can find rules that needs to be applied into every component to ensure that they are highly customizable, follow common format and coding standards.
+
+
+Now all modules can be designed with low coupling and with their own scope of responsibility, as well as distributed across the team without conflicts during development
+
+## File Structure
+
 ```
+└── src/
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+    ├── components/
+    |    ├── {{component-name}}
+    |    |   ├──{{ComponentName}}.tsx
+    |    |   ├──{{ComponentName}}.stories.tsx
+    |    |   ├──{{ComponentName}}.types.ts
+    |    |   ├──{{ComponentName}}.module.scss
+    |    |   └──index.ts
+    |    └── index.ts
+    └── index.ts
+    
+    ├── grids/
+    |    ├── {{grid-name}}
+    |    |   ├──{{GridName}}.tsx
+    |    |   ├──{{GridName}}.stories.tsx
+    |    |   ├──{{GridName}}.types.ts
+    |    |   ├──{{GridName}}.module.scss
+    |    |   └──index.ts
+    |    └── index.ts
+    └── index.ts
+    
+    ├── pages/
+    |    ├── {{page-name}}
+    |    |   ├──{{PageName}}.tsx
+    |    |   ├──{{PageName}}.stories.tsx
+    |    |   ├──{{PageName}}.types.ts
+    |    |   ├──{{PageName}}.module.scss
+    |    |   └──index.ts
+    |    └── index.ts
+```

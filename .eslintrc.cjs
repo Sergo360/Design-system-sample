@@ -11,4 +11,13 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        // Path to your TS config file
+        alwaysTryTypes: true,
+        project: './tsconfig.json',  // replace './tsconfig.json' with your tsconfig path if it is different
+      }
+    }
+  }
 }

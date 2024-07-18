@@ -1,0 +1,125 @@
+.wrapper {
+  border-radius: 53px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.rounded {
+    border-radius: 4px;
+    color: black;
+  }
+
+  &.size {
+    &-md {
+      padding: var(--gap-xs) var(--gap-md);
+      height: 3.5rem;
+      font-size: var(--font-xs);
+    }
+
+    &-xs {
+      // padding: var(--gap-xxs) var(--gap-lg);
+      height: 3.5rem;
+      width: 3.5rem;
+      font-size: 22px;
+    }
+  }
+
+  &.color {
+    &-primary {
+      border: 1px solid var(--orange);
+      background: var(--orange);
+      color: white;
+      font-weight: 700;
+
+      &:hover:not(:disabled) {
+        border-color: var(--orange-dark);
+        background: var(--orange-dark);
+        filter: drop-shadow(2px 2px 9px rgba(48, 36, 68, 0.1));
+      }
+    }
+
+    &-secondary {
+      border: 1px solid var(--purple-dark);
+      background: white;
+      color: var(--purple-dark);
+      font-weight: 500;
+
+      &:hover:not(:disabled) {
+        border-color: #0e0c13;
+        filter: drop-shadow(2px 2px 9px rgba(48, 36, 68, 0.1));
+      }
+    }
+    &-gray {
+      background: #DCD7E7;
+      color: rgba(64, 54, 84, 0.7);;
+      font-weight: 500;
+
+      &:hover:not(:disabled) {
+        border-color: #0e0c13;
+        filter: drop-shadow(2px 2px 9px rgba(48, 36, 68, 0.1));
+      }
+    }
+  }
+
+  &:disabled {
+    background: var(--gray-light);
+    color: var(--gray-mid);
+    border-color: var(--gray-light);
+    font-weight: 500;
+    cursor: inherit;
+  }
+}
+
+.text {
+  font-weight: 500;
+  width: fit-content;
+  font-size: var(--font-xs);
+  color: var(--orange);
+  text-decoration: underline;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  &.color {
+    &-gray {
+      color: var(--gray);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--gray-mid);
+      }
+    }
+  }
+
+  &:disabled {
+    color: var(--gray-mid);
+    cursor: inherit;
+    text-decoration: none;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--orange-dark);
+  }
+}
+
+.spread {
+  width: 100%;
+  background-color: var(--purple-2);
+  padding: var(--gap-sm);
+  border: 1px dashed var(--gray-border);
+  border-radius: 3px;
+
+  &[disabled], &[disabled]:hover, &[disabled]:active {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  &:active {
+    opacity: 0.9;
+  }
+}

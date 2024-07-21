@@ -1,0 +1,41 @@
+
+@layer components {
+  .typography {
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    @at-root html[data-theme="dark"] & {
+      color: var(--color-purple-4);
+    }
+  }
+
+  .h1 {
+    font-weight: 700;
+    font-size: 2.4rem;
+  }
+
+  .h2 {
+    font-size: 2.1rem;
+    font-weight: 700;
+  }
+
+  .h3 {
+    font-size: 1.9rem;
+    font-weight: 700;
+  }
+
+  .h4 {
+    font-size: 1.7rem;
+  }
+
+  .p {
+  }
+
+  .small {
+    font-size: 1.2rem;
+  }
+
+  .bold {
+    font-weight: 700;
+  }
+}

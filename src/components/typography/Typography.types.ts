@@ -1,20 +1,21 @@
 import type { ReactNode } from "react";
 
-interface Props {
+enum TAGS {
+    "p",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "span",
+}
+
+export type TypographyProps = {
     className?: string;
     tagClassName?: string;
     bold?: boolean;
     children: ReactNode;
     HTMLContent?: string;
-}
+    tag: keyof typeof TAGS;
+};
 
-export type TypographyProps<T> = (T extends React.ComponentType<infer P>
-    ? P & { tag?: React.JSXElementConstructor<P> }
-    : T extends keyof JSX.IntrinsicElements
-      ? JSX.IntrinsicElements[T] & {
-            tag?: T;
-        }
-      : never) &
-    Props;
-
-export type OmittedTagProps<T> = Omit<TypographyProps<T>, "tag">;
+export type OmittedTagProps = Omit<TypographyProps, "tag">;

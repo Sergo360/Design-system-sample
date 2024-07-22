@@ -5,58 +5,60 @@ import type { ElementType } from "react";
 import { OmittedTagProps, TypographyProps } from "./Typography.types";
 import s from "./typography.module.scss";
 
-const TypographyComponent = <T = "p",>({
+const TypographyComponent = ({
     tag,
     tagClassName,
     className = "",
     bold,
     children,
-    HTMLContent,
     ...rest
-}: TypographyProps<T>) => {
+}: TypographyProps) => {
     const Tag = (tag ?? "p") as ElementType;
 
     return (
         <Tag
             className={cx(
                 s.typography,
-                s[tagClassName ?? (tag as any)],
+                tagClassName && s[tagClassName],
                 className,
                 bold && s.bold,
             )}
             {...rest}
-            {...(HTMLContent
-                ? { dangerouslySetInnerHTML: { __html: HTMLContent } }
-                : null)}
         >
             {children}
         </Tag>
     );
 };
 
-export const Typography = memo(
-    TypographyComponent,
-) as unknown as typeof TypographyComponent;
+export const Typography = memo(TypographyComponent);
 
-export const H1 = memo(({ ...props }: OmittedTagProps<"h1">) => (
-    <TypographyComponent tag="h1" {...props} />
+export const H1 = memo(({ children, ...props }: OmittedTagProps) => (
+    <TypographyComponent tag="h1" {...props}>
+        {children}
+    </TypographyComponent>
 ));
-export const H2 = memo(({ ...props }: OmittedTagProps<"h2">) => (
-    <TypographyComponent tag="h2" {...props} />
+export const H2 = memo(({ children, ...props }: OmittedTagProps) => (
+    <TypographyComponent tag="h2" {...props}>
+        {children}
+    </TypographyComponent>
 ));
-export const H3 = memo(({ ...props }: OmittedTagProps<"h3">) => (
-    <TypographyComponent tag="h3" {...props} />
+export const H3 = memo(({ children, ...props }: OmittedTagProps) => (
+    <TypographyComponent tag="h3" {...props}>
+        {children}
+    </TypographyComponent>
 ));
-export const H4 = memo(({ ...props }: OmittedTagProps<"h4">) => (
-    <TypographyComponent tag="h4" {...props} />
+export const H4 = memo(({ children, ...props }: OmittedTagProps) => (
+    <TypographyComponent tag="h4" {...props}>
+        {children}
+    </TypographyComponent>
 ));
-export const P = memo(({ ...props }: OmittedTagProps<"p">) => (
-    <TypographyComponent tag="p" {...props} />
-)) as unknown as typeof Typography<"p">;
-export const Span = memo(({ ...props }: OmittedTagProps<"span">) => (
-    <TypographyComponent tag="span" {...props} />
+export const P = memo(({ children, ...props }: OmittedTagProps) => (
+    <TypographyComponent tag="p" {...props}>
+        {children}
+    </TypographyComponent>
 ));
-
-export const Test = ({ ...props }: OmittedTagProps<"span">) => (
-    <TypographyComponent tag="span" {...props} />
-);
+export const Span = memo(({ children, ...props }: OmittedTagProps) => (
+    <TypographyComponent tag="span" {...props}>
+        {children}
+    </TypographyComponent>
+));
